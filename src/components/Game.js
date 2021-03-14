@@ -37,7 +37,7 @@ function Game(props) {
             if (props.goBtn === 'Start ❯❯') {
               handleChange('goBtn', '❮❮ Go Back');
               handleChange('isPlaying', true);
-              if (props.all.mpt >= props.all.mfg) handleChange('mpt', props.all.mfg - 1);
+              if (props.all.mpt > props.all.mfg) handleChange('mpt', props.all.mfg);
             } else {
               handleChange('goBtn', 'Start ❯❯');
               handleChange('isPlaying', false);
