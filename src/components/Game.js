@@ -5,7 +5,7 @@ import AIPhoto from '../assets/AI_hard.png';
 import '../css/game.css';
 
 import Setup from './Setup';
-import GameProcess from './GameProcess';
+import Playing from './Playing';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -13,9 +13,8 @@ import UpdateGameState from '../actions/UpdateGameState';
 
 function Game(props) {
   console.log(props.gameSetup);
-  function handleClick() {
-    props.UpdateGameState('new status ololololooo');
-    console.log(props.gameSetup);
+  function handleChange(type, data) {
+    props.UpdateGameState(type, data);
   }
   return (
     <div id="game">
@@ -30,12 +29,22 @@ function Game(props) {
           <div>AI:Hard</div>
         </div>
       </div>
-      <div id="game-process">
-        <Setup />
-        {/* <GameProcess /> */}
-      </div>
+      <div id="game-process">{props.isPlaying ? <Playing /> : <Setup />}</div>
       <div id="game-controller">
-        <button className="goBtn">{props.goBtn}</button>
+        <button
+          className="goBtn"
+          onClick={() => {
+            if (props.goBtn === 'Start ❯❯') {
+              handleChange('goBtn', '❮❮ Go Back');
+              handleChange('isPlaying', true);
+            } else {
+              handleChange('goBtn', 'Start ❯❯');
+              handleChange('isPlaying', false);
+            }
+          }}
+        >
+          {props.goBtn}
+        </button>
       </div>
     </div>
   );
@@ -44,6 +53,7 @@ function Game(props) {
 function mapStateToProps(state) {
   return {
     goBtn: state.gameState.goBtn,
+    isPlaying: state.gameState.isPlaying,
   };
 }
 

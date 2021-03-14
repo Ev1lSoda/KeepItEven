@@ -2,7 +2,7 @@ const initialSetup = {
   firstTurn: false,
   mfg: 12,
   mpt: 3,
-  goBtn: 'Start ❭❭❭',
+  goBtn: 'Start ❯❯',
   isPlaying: false,
   haveWon: false,
 };
@@ -12,7 +12,7 @@ export default (state = initialSetup, action) => {
     if (action.type === oneState) {
       const newState = Object.assign({}, state);
       newState[action.type] = action.payload;
-      console.log(`${action.type}: ${newState.firstTurn}`);
+      console.log(`${action.type}: ${newState[action.type]}`);
       return newState;
     }
   }

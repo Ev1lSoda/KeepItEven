@@ -5,7 +5,6 @@ import '../css/setup.css';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import UpdateGameState from '../actions/UpdateGameState';
-
 function Setup(props) {
   function handleChange(type, data) {
     props.UpdateGameState(type, data);
@@ -14,7 +13,7 @@ function Setup(props) {
     <>
       <div className="setup setup-first">
         <label>
-          AI go first:
+          AI goes first:
           <input
             type="checkbox"
             className="checkmark"
@@ -26,20 +25,34 @@ function Setup(props) {
         </label>
       </div>
       <div className="setup">
-        <label>Number of matches for game:</label>
+        <label>Factor for matches in game(2n+1):</label>
         <input
           type="number"
-          min="0"
+          min="3"
           max="1010"
-          placeholder={props.gameSetup.mfg}
+          value={props.gameSetup.mfg}
           onChange={(e) => {
-            handleChange('mfg', e.target.value);
+            let value = +e.target.value;
+            if (value < 3) value = 3;
+            else if (value > 1010) value = 1010;
+            handleChange('mfg', value);
           }}
         />
       </div>
       <div className="setup">
-        <label>Number of matches per turn:</label>
-        <input type="number" min="0" max={props.gameSetup.mfg - 1} value={props.gameSetup.mpt} />
+        <label>Max number of matches per turn(m):</label>
+        <input
+          type="number"
+          min="0"
+          max={props.gameSetup.mfg - 1}
+          value={props.gameSetup.mpt}
+          onChange={(e) => {
+            let value = +e.target.value;
+            if (value < 3) value = 3;
+            else if (value > props.gameSetup.mfg - 1) value = props.gameSetup.mfg - 1;
+            handleChange('mpt', value);
+          }}
+        />
       </div>
     </>
   );

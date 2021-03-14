@@ -3,7 +3,7 @@
   font-family: 'Courier New';
   font-size: 25px;
   font-weight: bolder;
-  justify-content: center;
+  margin-top: 5px;
 }
 input[type='number'] {
   border: none;

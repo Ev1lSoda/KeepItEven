@@ -2,14 +2,16 @@
   display: flex;
   justify-content: space-around;
   align-content: flex-start;
+  font-family: 'Courier New';
   font-size: 50px;
   font-weight: bolder;
-  width: 94%;
+  width: 90%;
 }
 #matches {
   display: flex;
   justify-content: center;
   margin-top: 10px;
+  font-family: 'Courier New';
   font-size: 45px;
   font-weight: bold;
   width: auto;
@@ -29,7 +31,8 @@
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 16px;
+  font-size: 25px;
+  font-weight: bolde;
 }
 .take button:hover {
   background-color: lightgray;
