@@ -37,6 +37,7 @@ function Game(props) {
             if (props.goBtn === 'Start ❯❯') {
               handleChange('goBtn', '❮❮ Go Back');
               handleChange('isPlaying', true);
+              if (props.all.mpt >= props.all.mfg) handleChange('mpt', props.all.mfg - 1);
             } else {
               handleChange('goBtn', 'Start ❯❯');
               handleChange('isPlaying', false);
@@ -52,6 +53,7 @@ function Game(props) {
 
 function mapStateToProps(state) {
   return {
+    all: state.gameState,
     goBtn: state.gameState.goBtn,
     isPlaying: state.gameState.isPlaying,
   };

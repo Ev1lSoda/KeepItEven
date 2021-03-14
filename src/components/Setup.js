@@ -28,12 +28,12 @@ function Setup(props) {
         <label>Factor for matches in game(2n+1):</label>
         <input
           type="number"
-          min="3"
+          min="1"
           max="1010"
           value={props.gameSetup.mfg}
           onChange={(e) => {
             let value = +e.target.value;
-            if (value < 3) value = 3;
+            if (value < 1) value = 1;
             else if (value > 1010) value = 1010;
             handleChange('mfg', value);
           }}
@@ -43,13 +43,13 @@ function Setup(props) {
         <label>Max number of matches per turn(m):</label>
         <input
           type="number"
-          min="0"
-          max={props.gameSetup.mfg - 1}
+          min="1"
+          max={props.gameSetup.mfg}
           value={props.gameSetup.mpt}
           onChange={(e) => {
             let value = +e.target.value;
-            if (value < 3) value = 3;
-            else if (value > props.gameSetup.mfg - 1) value = props.gameSetup.mfg - 1;
+            if (value < 1) value = 1;
+            else if (value > props.gameSetup.mfg) value = props.gameSetup.mfg;
             handleChange('mpt', value);
           }}
         />
