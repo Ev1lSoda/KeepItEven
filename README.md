@@ -1,6 +1,4 @@
-# KeepItEven
-(Test task)
-
+# KeepItEven (Test task)
 ## To run
 
 1. `git clone https://github.com/Ev1lSoda/KeepItEven` to your local folder
