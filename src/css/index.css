@@ -29,10 +29,10 @@ code {
 }
 
 #header {
-  margin: 15px 0px 0px 15px;
+  margin: 10px 0px 0px 15px;
   font-family: 'Brush Script MT';
-  font-size: 60px;
-  font-weight: 700;
+  font-size: 4.5em;
+  font-weight: bolder;
 }
 
 #footer {

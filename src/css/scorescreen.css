@@ -1,0 +1,10 @@
+#scorescreen {
+  font-size: 50px;
+  font-weight: bolder;
+}
+.win {
+  color: red;
+}
+.lose {
+  color: blue;
+}
