@@ -28,7 +28,7 @@ function Setup(props) {
   const [isEnd, setIsEnd] = useState(false);
   useEffect(() => {
     if (props.gameSetup.firstTurn) {
-      setTimeout(aiTake, 20);
+      aiTake();
     }
   }, []);
   useEffect(() => {
@@ -38,9 +38,7 @@ function Setup(props) {
       } else if (matches.ai % 2 === 0) {
         handleChange('haveWon', false);
       }
-      setTimeout(() => {
-        setIsEnd(true);
-      }, 10);
+      setIsEnd(true);
     }
   }, [matches.all]);
   function playerTake() {
@@ -52,25 +50,21 @@ function Setup(props) {
         take: prev.take > prev.all ? prev.all : prev.take,
       };
     });
-    setTimeout(() => {
-      if (matches.all >= 1) {
-        aiTake();
-      }
-    }, 20);
+    if (matches.all >= 1) {
+      aiTake();
+    }
   }
   async function aiTake() {
     let take = await getRandomInt(props.gameSetup.mpt);
-    setTimeout(() => {
-      if (take > matches.all) take = matches.all;
-      setMatches((prev) => {
-        return {
-          player: prev.player,
-          ai: prev.ai + (take > prev.all ? prev.all : take),
-          all: prev.all - (take > prev.all ? prev.all : take),
-          take: prev.take,
-        };
-      });
-    }, 10);
+    if (take > matches.all) take = matches.all;
+    setMatches((prev) => {
+      return {
+        player: prev.player,
+        ai: prev.ai + (take > prev.all ? prev.all : take),
+        all: prev.all - (take > prev.all ? prev.all : take),
+        take: prev.take,
+      };
+    });
   }
   return (
     <>
@@ -89,7 +83,7 @@ function Setup(props) {
         <div className="take">
           <button
             onClick={() => {
-              setTimeout(playerTake, 20);
+              playerTake();
             }}
           >
             Take!
@@ -104,14 +98,12 @@ function Setup(props) {
               if (value < 1) value = 1;
               else if (value > matches.all) value = matches.all;
               else if (value > props.gameSetup.mpt) value = props.gameSetup.mpt;
-              setTimeout(() => {
-                setMatches({
-                  player: matches.player,
-                  ai: matches.ai,
-                  all: matches.all,
-                  take: value,
-                });
-              }, 20);
+              setMatches({
+                player: matches.player,
+                ai: matches.ai,
+                all: matches.all,
+                take: value,
+              });
 
               console.log(matches);
             }}
